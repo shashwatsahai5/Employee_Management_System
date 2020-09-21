@@ -19,7 +19,7 @@
                         <thead>
                           <tr>
                             <th scope="col">Profile</th>
-                          <th scope="col" style="text-align: right"><a href="/employee/{{$employee->id}}/edit" class="btn btn-primary">Edit</th>
+                            <th scope="col" style="text-align: right"><a href="/employee/{{$employee->id}}/edit" class="btn btn-primary">Edit</th>
                             
                           </tr>
                         </thead>
@@ -59,37 +59,13 @@
                             <td>{{$employee->company_name}}</td>
                             
                           </tr>
-                          <tr>
-                            <th scope="row">House</th>
-                            <td>{{$employee->name}}</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">Street</th>
-                            <td>{{$employee->street}}</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">City</th>
-                            <td>{{$employee->city}}</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">State</th>
-                            <td>{{$employee->state}}</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">Country</th>
-                            <td>{{$employee->country}}</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">Zip Code</th>
-                            <td>{{$employee->zip}}</td>
-                            
-                          </tr>
 
+                          <tr>
+                            <th scope="row">Addresses</th>
+                            <td><a href="/address/{{$employee->id}}/show" class="btn btn-secondary">View</td>
+                            
+                          </tr>
+                          
                           
                         </tbody>
                       </table>

@@ -22,6 +22,9 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sendmail/{id}/new', 'mailController@index');
 Route::post('/sendmail/send', 'mailController@send');
+Route::get('/address/{id}/show','AddressController@show');
+Route::post('address','AddressController@store');
+Route::post('/address/{id}','AddressController@destroy');
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/admin', 'AdminController@index');

@@ -14,12 +14,6 @@ class AddAddress extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('name')->nullable();
-            $table->string('street')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
-            $table->integer('zip')->nullable();
             $table->string('phone')->nullable();
         });
     }
@@ -32,12 +26,6 @@ class AddAddress extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('street');
-            $table->dropColumn('city');
-            $table->dropColumn('state');
-            $table->dropColumn('country');
-            $table->dropColumn('zip');
             $table->dropColumn('phone');
         });
     }

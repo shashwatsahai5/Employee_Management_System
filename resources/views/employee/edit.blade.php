@@ -30,6 +30,11 @@
         {{Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'Main Email'])}}
     </div>
 
+    <div class = "form-group">
+        {{Form::label('phone', 'Phone Number')}}
+        {{Form::text('phone', $employee->phone, ['class' => 'form-control', 'placeholder' => 'Main Phone Number'])}}
+    </div>
+
     @if(Auth::user()->user_type == 'admin')
     <div class = "form-group">
         {{Form::label('department', 'Department')}}
@@ -51,37 +56,7 @@
         {{Form::text('department', $employee->department, ['class' => 'form-control', 'readonly' => 'true'])}}
     </div>
     @endif
-
-    <div class = "form-group">
-        {{Form::label('house_number', 'House Number')}}
-        {{Form::text('house_number', $employee->name, ['class' => 'form-control', 'placeholder' => 'House Number'])}}
-    </div>
-    <div class = "form-group">
-        {{Form::label('street', 'Street')}}
-        {{Form::text('street', $employee->street, ['class' => 'form-control', 'placeholder' => 'Street'])}}
-    </div>
-    <div class = "form-group">
-        {{Form::label('city', 'City')}}
-        {{Form::text('city', $employee->city, ['class' => 'form-control', 'placeholder' => 'City'])}}
-    </div>
-    <div class = "form-group">
-        {{Form::label('state', 'State')}}
-        {{Form::text('state', $employee->state, ['class' => 'form-control', 'placeholder' => 'State'])}}
-    </div>
-    <div class = "form-group">
-        {{Form::label('country', 'Country')}}
-        {{Form::text('country', $employee->country, ['class' => 'form-control', 'placeholder' => 'Country'])}}
-    </div>
-    <div class = "form-group">
-        {{Form::label('zip', 'Zip')}}
-        {{Form::number('zip', $employee->zip, ['class' => 'form-control', 'placeholder' => 'zipcode'])}}
-    </div>
-    <div class = "form-group">
-        {{Form::label('phone', 'Phone Number')}}
-        {{Form::text('phone', $employee->phone, ['class' => 'form-control', 'placeholder' => 'Phone Number'])}}
-    </div>
-    
-    
+   
     
     {{Form::hidden('_method', 'PUT')}}
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}

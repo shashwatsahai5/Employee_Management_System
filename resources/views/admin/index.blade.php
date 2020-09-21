@@ -25,8 +25,8 @@
                             <th>DOB</th>
                             <th>Company</th>
                             <th>Department</th>
-                            <th>Registration Date</th>
-                            <th colspan="3">Actions</th>
+                            
+                            <th colspan="4">Actions</th>
                             
                             
                         </tr>
@@ -40,9 +40,10 @@
                             <td>{{$u->DOB}}</td>
                             <td>{{$u->company_name}}</td>
                             <td>{{$u->department}}</td>
-                            <td>{{$u->created_at}}</td>
+                            
                             <td><a href="/employee/{{$u->id}}/edit" class = "btn btn-default">Edit</td>
                             <td><a href="/sendmail/{{$u->id}}/new" class = "btn btn-default">Send E-mail</td>
+                            <td><a href="/address/{{$u->id}}/show" class = "btn btn-default">Addresses</td>
                             <td>
                                 {!!Form::open(['action' => ['EmployeeController@destroy', $u->id], 'method' => 'POST' ])!!}
                                     {{Form::hidden('_method', 'DELETE')}}

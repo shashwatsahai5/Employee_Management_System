@@ -93,12 +93,6 @@ class EmployeeController extends Controller
         $employee->company_name = $request->input('company_name');
         $employee->email = $request->input('email');
         $employee->department = $request->input('department');
-        $employee->name = $request->input('house_number');
-        $employee->street = $request->input('street');
-        $employee->city = $request->input('city');
-        $employee->state = $request->input('state');
-        $employee->country = $request->input('country');
-        $employee->zip = $request->input('zip');
         $employee->phone = $request->input('phone');
         $employee->save();
         if($employee->user_type == 'employee'){
