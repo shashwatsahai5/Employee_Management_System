@@ -45,6 +45,11 @@
                             
                           </tr>
                           <tr>
+                            <th scope="row">Department</th>
+                            <td>{{$employee->department}}</td>
+                            
+                          </tr>
+                          <tr>
                             <th scope="row">Company</th>
                             <td>{{$employee->company_name}}</td>
                             

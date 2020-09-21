@@ -33,6 +33,7 @@
                             
                             @if (Auth::user()->user_type == 'admin')
                                 <a class="dropdown-item" href="/admin">Admin Panel</a>
+                                <a class="dropdown-item" href="/home">Home</a>
                             @else
                                 <a class="dropdown-item" href="/home">Home</a>
                             @endif

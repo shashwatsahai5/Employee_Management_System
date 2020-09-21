@@ -91,6 +91,7 @@ class EmployeeController extends Controller
         $employee->DOB = $request->input('DOB');
         $employee->company_name = $request->input('company_name');
         $employee->email = $request->input('email');
+        $employee->department = $request->input('department');
         $employee->save();
         if($employee->user_type == 'employee'){
             return redirect('/home')->with('success', 'Profile Updated');
