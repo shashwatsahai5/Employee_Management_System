@@ -40,6 +40,11 @@
                             
                           </tr>
                           <tr>
+                            <th scope="row">Phone</th>
+                            <td>{{$employee->phone}}</td>
+                            
+                          </tr>
+                          <tr>
                             <th scope="row">DOB</th>
                             <td>{{$employee->DOB}}</td>
                             
@@ -54,6 +59,38 @@
                             <td>{{$employee->company_name}}</td>
                             
                           </tr>
+                          <tr>
+                            <th scope="row">House</th>
+                            <td>{{$employee->name}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">Street</th>
+                            <td>{{$employee->street}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">City</th>
+                            <td>{{$employee->city}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">State</th>
+                            <td>{{$employee->state}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">Country</th>
+                            <td>{{$employee->country}}</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">Zip Code</th>
+                            <td>{{$employee->zip}}</td>
+                            
+                          </tr>
+
+                          
                         </tbody>
                       </table>
 
