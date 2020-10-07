@@ -25,7 +25,7 @@ class AddressController extends Controller
         $address->state = $request->input('state');
         $address->country = $request->input('country');
         $address->zip = $request->input('zip');
-        $address->phone = $request->input('phone');
+        //$address->phone = $request->input('phone');
         $address->save();
         return back()->with('success', 'Address Added');
 

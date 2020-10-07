@@ -66,10 +66,10 @@
                 {{Form::label('zip', 'Zip')}}
                 {{Form::number('zip','' , ['class' => 'form-control', 'placeholder' => 'zipcode'])}}
             </div>
-            <div class = "form-group">
+            <!--div class = "form-group">
                 {{Form::label('phone', 'Phone Number')}}
                 {{Form::text('phone', '' ,['class' => 'form-control', 'placeholder' => 'Phone Number'])}}
-            </div>
+            </div-->
 
             
             {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
