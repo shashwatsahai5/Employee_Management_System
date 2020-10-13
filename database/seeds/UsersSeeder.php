@@ -47,8 +47,8 @@ class UsersSeeder extends Seeder
     
         DB::table('users')->insert([
             'first_name' => 'user',
-            'last_name' => 'four',
-            'email' => 'user4@user.com',
+            'last_name' => 'one',
+            'email' => 'user1@user.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'DOB' => now(),
@@ -63,9 +63,9 @@ class UsersSeeder extends Seeder
         
         DB::table('users')->insert([
             'first_name' => 'user',
-            'last_name' => 'five',
-            'email' => 'user5@user.com',
-            'password' => Hash::make('987654321'),
+            'last_name' => 'two',
+            'email' => 'user2@user.com',
+            'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'DOB' => now(),
             'company_name' => 'KiwiTech',
@@ -79,9 +79,9 @@ class UsersSeeder extends Seeder
     
         DB::table('users')->insert([
             'first_name' => 'user',
-            'last_name' => 'six',
-            'email' => 'user6@user.com',
-            'password' => Hash::make('987654321'),
+            'last_name' => 'three',
+            'email' => 'user3@user.com',
+            'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'DOB' => now(),
             'company_name' => 'KiwiTech',
