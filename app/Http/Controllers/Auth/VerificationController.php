@@ -28,8 +28,12 @@ class VerificationController extends Controller
      */
 
     
-    protected $redirectTo = RouteServiceProvider::HOME;
-    
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo(){
+        app('App\Http\Controllers\mailController')->sendWelcomeMail(auth()->user()->id);
+        
+        return '/home';
+    }
 
     /**
      * Create a new controller instance.

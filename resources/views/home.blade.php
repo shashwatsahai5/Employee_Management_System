@@ -65,6 +65,12 @@
                             <td><a href="/address/{{$employee->id}}/show" class="btn btn-secondary">View</td>
                             
                           </tr>
+
+                          <tr>
+                            <th scope="row">Password</th>
+                            <td><a href="/password/{{$employee->id}}/show" class="btn btn-default">Change</td>
+                            
+                          </tr>
                           
                           
                         </tbody>

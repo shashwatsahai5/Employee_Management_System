@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="d-flex justify-content-center container">
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
@@ -25,7 +25,7 @@
                             <th>DOB</th>
                             <th>Company</th>
                             <th>Department</th>
-                            
+                            <th>Registration</th>
                             <th colspan="4">Actions</th>
                             
                             
@@ -40,8 +40,8 @@
                             <td>{{$u->DOB}}</td>
                             <td>{{$u->company_name}}</td>
                             <td>{{$u->department}}</td>
-                            
-                            <td><a href="/employee/{{$u->id}}/edit" class = "btn btn-default">Edit</td>
+                            <td>{{$u->created_at}}</td>
+                            <td><a href="/admin/employee/{{$u->id}}/edit" class = "btn btn-default">Edit</td>
                             <td><a href="/sendmail/{{$u->id}}/new" class = "btn btn-default">Send E-mail</td>
                             <td><a href="/address/{{$u->id}}/show" class = "btn btn-default">Addresses</td>
                             <td>
@@ -52,6 +52,7 @@
     
                             </td>
                             
+
                         </tr>
 
                         @endforeach

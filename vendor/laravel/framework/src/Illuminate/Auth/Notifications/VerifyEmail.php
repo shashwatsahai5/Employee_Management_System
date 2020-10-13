@@ -44,10 +44,11 @@ class VerifyEmail extends Notification
         }
 
         return (new MailMessage)
-            ->subject(Lang::get('Verify Email Address'))
-            ->line(Lang::get('Please click the button below to verify your email address.'))
+            ->subject(Lang::get('Employee Mangement- Confirm Email'))
+            ->line(Lang::get('Hi'))
+            ->line(Lang::get('You have just made registration on Employee Management. Please click the link below to confirm your email and login.'))
             ->action(Lang::get('Verify Email Address'), $verificationUrl)
-            ->line(Lang::get('If you did not create an account, no further action is required.'));
+            ->line(Lang::get('Please do not reply to this email as we are unable to respond from this email address. We\'re her ot help you if you need it. Contact us (support@employeemanagement.com)'));
     }
 
     /**

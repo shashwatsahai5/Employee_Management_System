@@ -15,7 +15,7 @@
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control" name="first_name" >
+                                <input id="first_name" type="text" class="form-control" name="first_name" required>
                             </div>
                         </div>
 
@@ -23,7 +23,7 @@
                             <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control " name="last_name" >
+                                <input id="first_name" type="text" class="form-control " name="last_name" required>
 
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" >
+                                <input id="email" type="email" class="form-control" name="email" required>
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
                             <label for="DOB" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="DOB" type="date" class="form-control" name="DOB" >
+                                <input id="DOB" type="date" class="form-control" name="DOB" required>
 
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <label for="company" class="col-md-4 col-form-label text-md-right">{{ __('Company') }}</label>
 
                             <div class="col-md-6">
-                                <input id="company" type="text" class="form-control" name="company_name" >
+                                <input id="company" type="text" class="form-control" name="company_name" required>
 
                             </div>
                         </div>

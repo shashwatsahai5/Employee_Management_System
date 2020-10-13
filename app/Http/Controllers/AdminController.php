@@ -57,7 +57,11 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(auth()->user()->user_type !== 'admin' ){
+            return redirect('/home')->with('error', 'Unauthourized access!');
+        }
+        $user = User::find($id);
+        return view('employee.edit')->with('employee',$user);
     }
 
     /**
@@ -81,5 +85,6 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+
     }
 }

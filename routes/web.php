@@ -13,6 +13,7 @@ use App\Mail\welcomeMail;
 |
 */
 
+
 Route::get('/', function () {
     return view('mainpage');
 });
@@ -24,10 +25,18 @@ Route::get('/sendmail/{id}/new', 'mailController@index');
 Route::post('/sendmail/send', 'mailController@send');
 Route::get('/address/{id}/show','AddressController@show');
 Route::post('address','AddressController@store');
-Route::post('/address/{id}','AddressController@destroy');
+Route::delete('/address/{id}','AddressController@destroy');
+Route::get('/password/{id}/show','passwordController@show');
+Route::put('/password/{id}','passwordController@update');
 
+Route::group(['middleware' => 'cors'], function() {
+    Route::get('/address/{id}/show','AddressController@show');
+    //Route::post(‘/login’, ‘AuthController@login’);
+    //Route::post(‘/register’, ‘AuthController@register’);
+    });
 Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/admin', 'AdminController@index');
+    Route::get('/admin/employee/{id}/edit','adminController@edit');
 });
 
 

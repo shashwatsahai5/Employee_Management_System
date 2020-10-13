@@ -12,12 +12,12 @@ class AddressController extends Controller
     public function show($id){
         //$user = User::find($id);
         $addresses = Address::where('user_id', $id)->get();
-        return view('employee.address')->with('addresses',$addresses);
+        return view('employee.address', compact('addresses','id'))/*->with('addresses',$addresses)*/;
     }
 
     public function store(Request $request){
         $address = new Address;
-        $address->user_id = auth()->user()->id;
+        $address->user_id = $request->input('user_id');
         $address->address_type = $request->input('address_type');
         $address->name = $request->input('house_number');
         $address->street = $request->input('street');
@@ -37,7 +37,7 @@ class AddressController extends Controller
         if(auth()->user()->user_type !== 'admin' ){
             return redirect('/home')->with('error', 'Unauthourized access!');
         }
-        $employee->delete();
-        return back('/admin')->with('success', 'Address Deleted');
+        $address->delete();
+        return back()->with('success', 'Address Deleted');
     }
 }

@@ -7,27 +7,30 @@
     <div class='row'>
         <div class='col-md-2'></div>
         <div class='col-md-8'>
-            <h2>Edit Profile</h2><hr>
+            <div class="row">
+                <div class="col-sm-11"><h2>Edit Profile</h2></div>
+                <div class="col-sm-1"><button class="btn btn-primary" onclick="goBack()">Back</button></div>
+            </div><hr>
     {!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST'])!!}
     <div class = "form-group">
         {{Form::label('first_name', 'First Name')}}
-        {{Form::text('first_name', $value = $employee->first_name, ['class' => 'form-control', 'placeholder' => 'First Name'])}}
+        {{Form::text('first_name', $value = $employee->first_name, ['class' => 'form-control', 'placeholder' => 'First Name','required' => 'required'])}}
     </div>
     <div class = "form-group">
         {{Form::label('last_name', 'Last Name')}}
-        {{Form::text('last_name', $employee->last_name, ['class' => 'form-control', 'placeholder' => 'Last name'])}}
+        {{Form::text('last_name', $employee->last_name, ['class' => 'form-control', 'placeholder' => 'Last name','required' => 'required'])}}
     </div>
     <div class = "form-group">
         {{Form::label('DOB', 'D.O.B')}}
-        {{Form::text('DOB', $employee->DOB, ['class' => 'form-control', 'placeholder' => 'DOB'])}}
+        {{Form::text('DOB', $employee->DOB, ['class' => 'form-control', 'placeholder' => 'DOB','required' => 'required'])}}
     </div>
     <div class = "form-group">
         {{Form::label('company_name', 'Company')}}
-        {{Form::text('company_name', $employee->company_name, ['class' => 'form-control', 'placeholder' => 'Compant Name'])}}
+        {{Form::text('company_name', $employee->company_name, ['class' => 'form-control', 'placeholder' => 'Compant Name','required' => 'required'])}}
     </div>
     <div class = "form-group">
         {{Form::label('email', 'Email')}}
-        {{Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'Main Email'])}}
+        {{Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'Main Email', 'required' => 'required'])}}
     </div>
 
     <div class = "form-group">
@@ -35,7 +38,7 @@
         {{Form::text('phone', $employee->phone, ['class' => 'form-control', 'placeholder' => 'Main Phone Number'])}}
     </div>
 
-    @if(Auth::user()->user_type == 'admin')
+    
     <div class = "form-group">
         {{Form::label('department', 'Department')}}
         {{Form::select('department', array(
@@ -50,17 +53,16 @@
         'Data Analytics' => 'Data Analytics'),$employee->department,['class' => 'form-control'])}}
         
     </div>
-    @else
-    <div class = "form-group">
-        {{Form::label('department', 'Department')}}
-        {{Form::text('department', $employee->department, ['class' => 'form-control', 'readonly' => 'true'])}}
-    </div>
-    @endif
-   
+      
     
     {{Form::hidden('_method', 'PUT')}}
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
 </div>
 <div class='col-md-2'></div>
 </div></div>
+<script>
+    function goBack() {
+      window.history.back();
+    }
+    </script>
 @endsection

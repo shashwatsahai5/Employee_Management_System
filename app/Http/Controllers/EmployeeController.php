@@ -52,6 +52,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
         //
@@ -83,7 +84,8 @@ class EmployeeController extends Controller
             'last_name' => 'required',
             'DOB' => 'required',
             'company_name' => 'required',
-            'zip' => 'min:6|max:6'
+            'email' => 'required',
+            
         ]);
 
         $employee = User::find($id);
@@ -95,10 +97,11 @@ class EmployeeController extends Controller
         $employee->department = $request->input('department');
         $employee->phone = $request->input('phone');
         $employee->save();
-        if($employee->user_type == 'employee'){
+        /*if($employee->user_type == 'regular'){
             return redirect('/home')->with('success', 'Profile Updated');
         }
-        return redirect('/admin')->with('success', 'Profile Updated');
+        return redirect('/admin')->with('success', 'Profile Updated');*/
+        return back()->with('success', 'Profile Updated');
     }
 
     /**

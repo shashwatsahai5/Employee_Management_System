@@ -2,7 +2,17 @@
 
 @section('content')
 <div class = "container">
-    <h1>Addresses</h1>
+    <div class="row">
+        <div class="col-sm-11"><h1>Addresses</h1></div>
+       
+        <div class="col-sm-1"><button class="btn btn-primary" onclick="goBack()">Back</button></div>
+        <script>
+            function goBack() {
+              window.history.back();
+            }
+        </script>
+    </div>
+    
     @if(count($addresses) > 0)
     @foreach($addresses as $a)
     <div class = "jumbotron">
@@ -20,7 +30,6 @@
         {!!Form::close()!!}
 
     </div>
-
     @endforeach
     @else
     <div class = "jumbotron">You Homeless Dawg!</div>
@@ -34,8 +43,7 @@
                 {{Form::label('address_type', 'Address Type')}}
                 {{Form::text('address_type','' , ['class' => 'form-control', 'placeholder' => 'Eg. Home, Work, Hostel, PG'])}}
             </div>
-            
-            
+                      
             
             <div class = "form-group">
                 {{Form::label('country', 'Country')}}
@@ -71,7 +79,7 @@
                 {{Form::text('phone', '' ,['class' => 'form-control', 'placeholder' => 'Phone Number'])}}
             </div-->
 
-            
+            {{Form::hidden('user_id', $id, array('id' => 'invisible_id')) }}
             {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
         </div>
     
@@ -83,6 +91,7 @@
             document.getElementById('newAddressForm').style.display = "block";
             var countries = new XMLHttpRequest()
             var BATTUTA_KEY="026fb43d98da8f4a8bf0a1630b78009b"
+            //url1="http://battuta.medunes.net/api/city/jp/search/?city=paris&callback=?&key="+BATTUTA_KEY;
             url="http://battuta.medunes.net/api/country/all/?key="+BATTUTA_KEY;
             countries.open('GET',url,true)
             var list = {};

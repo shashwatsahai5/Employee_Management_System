@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Mail\SendMail;
+use App\Mail\SendWelcomeMail;
 
 class mailController extends Controller
 {
@@ -24,11 +25,6 @@ class mailController extends Controller
 
     function send(Request $request)
     {
-     /*$this->validate($request, [
-      'name'     =>  'required',
-      'email'  =>  'required|email',
-      'message' =>  'required'
-     ]);*/
 
         $data = array(
             'sender_mail'=>$request->sender_email,
@@ -41,5 +37,16 @@ class mailController extends Controller
      \Mail::to($request->reciever_email)->send(new SendMail($data));
      return back()->with('success', 'mail sent!');
 
+    }
+
+    function sendWelcomeMail($id){
+        $employee = User::find($id);
+
+        $welcome_data = array(
+            'reciever_first_name' => $employee->first_name,
+            'reciever_last_name' => $employee->last_name,
+        );
+        \Mail::to($employee->email)->send(new SendWelcomeMail($welcome_data));
+        return back();
     }
 }
