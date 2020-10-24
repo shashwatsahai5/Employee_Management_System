@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Department;
+use DB;
+
+
 class AdminController extends Controller
 {
     /**
@@ -13,7 +17,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(5);
+        $users = DB::table('departments')
+        ->join('users', 'departments.id', 'users.department_id')
+        //->get()
+        ->paginate(10);
+        //$users = User::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.index')->with('users',$users);
     }
 
@@ -60,8 +68,19 @@ class AdminController extends Controller
         if(auth()->user()->user_type !== 'admin' ){
             return redirect('/home')->with('error', 'Unauthourized access!');
         }
-        $user = User::find($id);
-        return view('employee.edit')->with('employee',$user);
+        /*$user = User::find($id);
+        return view('employee.edit')->with('employee',$user);*/
+
+        $department = Department::all();
+        $emp = User::find($id);
+        $empl = DB::table('departments')
+        ->join('users', 'departments.id', 'users.department_id')
+        ->where('users.id',$emp->id)
+        ->get();
+        /*echo "<pre>";
+        print_r($emp[0]);*/
+        $employee = $empl[0];
+        return view('employee.edit')->with(compact('employee','department'));
     }
 
     /**

@@ -13,24 +13,24 @@
             </div><hr>
     {!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST'])!!}
     <div class = "form-group">
-        {{Form::label('first_name', 'First Name')}}
-        {{Form::text('first_name', $value = $employee->first_name, ['class' => 'form-control', 'placeholder' => 'First Name','required' => 'required'])}}
+        {{Form::label('first_name', 'First Name', ['class' => 'required-field'])}}
+        {{Form::text('first_name', $value = $employee->first_name, ['class' => 'form-control required-field', 'placeholder' => 'First Name','required' => 'required'])}}
     </div>
     <div class = "form-group">
-        {{Form::label('last_name', 'Last Name')}}
-        {{Form::text('last_name', $employee->last_name, ['class' => 'form-control', 'placeholder' => 'Last name','required' => 'required'])}}
+        {{Form::label('last_name', 'Last Name', ['class' => 'required-field'])}}
+        {{Form::text('last_name', $employee->last_name, ['class' => 'form-control required-field', 'placeholder' => 'Last name','required' => 'required'])}}
     </div>
     <div class = "form-group">
-        {{Form::label('DOB', 'D.O.B')}}
-        {{Form::text('DOB', $employee->DOB, ['class' => 'form-control', 'placeholder' => 'DOB','required' => 'required'])}}
+        {{Form::label('DOB', 'D.O.B', ['class' => 'required-field'])}}
+        {{Form::date('DOB', $employee->DOB, ['class' => 'form-control', 'placeholder' => 'DOB','required' => 'required'])}}
     </div>
     <div class = "form-group">
-        {{Form::label('company_name', 'Company')}}
+        {{Form::label('company_name', 'Company', ['class' => 'required-field'])}}
         {{Form::text('company_name', $employee->company_name, ['class' => 'form-control', 'placeholder' => 'Compant Name','required' => 'required'])}}
     </div>
     <div class = "form-group">
-        {{Form::label('email', 'Email')}}
-        {{Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'Main Email', 'required' => 'required'])}}
+        {{Form::label('email', 'Email', ['class' => 'required-field'])}}
+        {{Form::email('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'Main Email', 'required' => 'required'])}}
     </div>
 
     <div class = "form-group">
@@ -38,19 +38,18 @@
         {{Form::text('phone', $employee->phone, ['class' => 'form-control', 'placeholder' => 'Main Phone Number'])}}
     </div>
 
-    
     <div class = "form-group">
         {{Form::label('department', 'Department')}}
-        {{Form::select('department', array(
-        'Recruitment' => 'Recruitment', 
-        'Development' => 'Development', 
-        'Marketing' => 'Marketing',
-        'Distribution' => 'Distribution',
-        'Sales' => 'Sales',
-        'Advertising' => 'Advertising',
-        'HR' => 'HR',
-        'Finance' => 'Finance',
-        'Data Analytics' => 'Data Analytics'),$employee->department,['class' => 'form-control'])}}
+        <select name = 'department_id' class = 'form-control' id="department">
+            @foreach($department as $dept)
+                @if($dept->id == $employee->department_id)
+                    <option value={{$dept->id}} selected>{{$dept->department_name}}</option> 
+                @else
+                    <option value={{$dept->id}} >{{$dept->department_name}}</option>
+                @endif
+            @endforeach
+        </select>
+        
         
     </div>
       
@@ -62,7 +61,21 @@
 </div></div>
 <script>
     function goBack() {
-      window.history.back();
-    }
-    </script>
+          if({{Auth::user()->user_type == 'admin'}}){
+            //window.location.href = "/admin";
+            if({{$employee->id}} == {{Auth::user()->id}}){
+              window.location.href = "/home";
+            }
+            else{
+              window.location.href = "/admin";
+            }
+          }
+          else{
+            window.location.href = "/home";
+          }
+          
+        }
+
+
+</script>
 @endsection

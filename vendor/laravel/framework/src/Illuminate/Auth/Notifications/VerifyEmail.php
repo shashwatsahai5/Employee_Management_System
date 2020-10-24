@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\URL;
+use App\User;
 
 class VerifyEmail extends Notification
 {
@@ -42,10 +43,11 @@ class VerifyEmail extends Notification
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
-
+        $user_id = $notifiable->getKey();
+        $user = User::find($user_id);
         return (new MailMessage)
             ->subject(Lang::get('Employee Mangement- Confirm Email'))
-            ->line(Lang::get('Hi'))
+            ->line(Lang::get('Hi ').$user->first_name." ".$user->last_name)
             ->line(Lang::get('You have just made registration on Employee Management. Please click the link below to confirm your email and login.'))
             ->action(Lang::get('Verify Email Address'), $verificationUrl)
             ->line(Lang::get('Please do not reply to this email as we are unable to respond from this email address. We\'re her ot help you if you need it. Contact us (support@employeemanagement.com)'));

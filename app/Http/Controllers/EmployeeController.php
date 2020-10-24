@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Department;
+use DB;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -65,9 +68,19 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $user = User::find($id);
-        return view('employee.edit')->with('employee',$user);
+        $department = Department::all();
+        $emp = User::find($id);
+        $empl = DB::table('departments')
+        ->join('users', 'users.department_id', 'departments.id')
+        ->where('users.id',$id)
+        ->get();
+        //echo "<pre>";
+        //print_r($empl);
+        $employee = $empl[0];
+        
+        return view('employee.edit')->with(compact('employee','department'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,23 +91,24 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $employee = User::find($id);
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
             'DOB' => 'required',
             'company_name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email,'.$employee->id
+            
             
         ]);
 
-        $employee = User::find($id);
+        
         $employee->first_name = $request->input('first_name');
         $employee->last_name = $request->input('last_name');
         $employee->DOB = $request->input('DOB');
         $employee->company_name = $request->input('company_name');
         $employee->email = $request->input('email');
-        $employee->department = $request->input('department');
+        $employee->department_id = $request->input('department_id');
         $employee->phone = $request->input('phone');
         $employee->save();
         /*if($employee->user_type == 'regular'){

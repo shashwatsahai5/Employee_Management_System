@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
+use App\User;
+use App\Department;
 
 class HomeController extends Controller
 {
@@ -23,9 +26,17 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   
         $employee = Auth::user();
-        return view('home')->with('employee',$employee);
+        $emp = DB::table('departments')
+        ->join('users','departments.id', 'users.department_id')
+        ->where('users.id',$employee->id)
+        ->get();
+        //echo "<pre>";
+        //print_r($emp[0]);
+        $e = $emp[0];
+
+        return view('home')->with('employee',$e);
     }
 
     

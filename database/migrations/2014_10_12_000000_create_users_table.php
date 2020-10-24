@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('DOB');
             $table->string('company_name');
             $table->rememberToken();
-            $table->timestamps();           
+            $table->timestamps();         
             
             
         });

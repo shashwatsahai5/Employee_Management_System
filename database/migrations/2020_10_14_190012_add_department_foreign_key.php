@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDepartment extends Migration
+class AddDepartmentForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddDepartment extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('department')->nullable();
+            $table->bigInteger('department_id')->unsigned()->default(10);
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade'); 
         });
     }
 
@@ -26,7 +27,7 @@ class AddDepartment extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('department');
+            $table->dropColumn('department_id');
         });
     }
 }

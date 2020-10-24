@@ -5,17 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Address;
+use Validator,Redirect,Response;
+use App\{Country,State};
 use DB;
 
 class AddressController extends Controller
 {
     public function show($id){
         //$user = User::find($id);
+        $states = State::get(["id","name"]);
+        $countries = Country::get(["name","id"]);
         $addresses = Address::where('user_id', $id)->get();
-        return view('employee.address', compact('addresses','id'))/*->with('addresses',$addresses)*/;
+        return view('employee.address', compact('addresses','id','countries', 'states'));
     }
 
     public function store(Request $request){
+
+        $validateData = $request->validate([
+            'address_type' => 'required|max:15',
+            'country' => 'required',
+            'state' => 'required',
+        ]);
+
         $address = new Address;
         $address->user_id = $request->input('user_id');
         $address->address_type = $request->input('address_type');
@@ -34,10 +45,8 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $address = Address::find($id);
-        if(auth()->user()->user_type !== 'admin' ){
-            return redirect('/home')->with('error', 'Unauthourized access!');
-        }
         $address->delete();
         return back()->with('success', 'Address Deleted');
+               
     }
 }

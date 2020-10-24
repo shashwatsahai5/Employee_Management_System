@@ -22,10 +22,11 @@ class CreateAddressesTable extends Migration
             $table->string('name')->nullable();
             $table->string('street')->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
+            $table->integer('state')->nullable();
+            $table->integer('country')->nullable();
             $table->integer('zip')->nullable();
             $table->timestamps(); 
+
             
         });
     }

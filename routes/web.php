@@ -17,26 +17,27 @@ use App\Mail\welcomeMail;
 Route::get('/', function () {
     return view('mainpage');
 });
-Route::get('/employee/{id}/edit','EmployeeController@edit');
-Route::resource('employee', 'EmployeeController');
-Auth::routes(['verify' => true]);
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/sendmail/{id}/new', 'mailController@index');
-Route::post('/sendmail/send', 'mailController@send');
-Route::get('/address/{id}/show','AddressController@show');
-Route::post('address','AddressController@store');
-Route::delete('/address/{id}','AddressController@destroy');
-Route::get('/password/{id}/show','passwordController@show');
-Route::put('/password/{id}','passwordController@update');
-
-Route::group(['middleware' => 'cors'], function() {
+Route::post('/checkemail','CountryStateController@checkemail');
+Route::post('get-states-by-country','CountryStateController@getState');
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('/employee/{id}/edit','EmployeeController@edit');
+    Route::resource('employee', 'EmployeeController');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/sendmail/{id}/new', 'mailController@index');
+    Route::post('/sendmail/send', 'mailController@send');
     Route::get('/address/{id}/show','AddressController@show');
-    //Route::post(‘/login’, ‘AuthController@login’);
-    //Route::post(‘/register’, ‘AuthController@register’);
-    });
+    Route::post('address','AddressController@store');
+    Route::delete('/address/{id}','AddressController@destroy');
+    Route::get('/password/{id}/show','passwordController@show');
+    Route::put('/password/{id}','passwordController@update');
+    
+}); 
+
+Auth::routes(['verify' => true]);
+
 Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/admin', 'AdminController@index');
-    Route::get('/admin/employee/{id}/edit','adminController@edit');
+    Route::get('/admin/employee/{id}/edit','AdminController@edit');
 });
 
 
