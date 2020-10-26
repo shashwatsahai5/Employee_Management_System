@@ -14,6 +14,7 @@ class EmployeeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
     }
     
     
@@ -68,6 +69,7 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
+        if(auth()->user()->user_type == 'admin' || auth()->user()->id == $id){
         $department = Department::all();
         $emp = User::find($id);
         $empl = DB::table('departments')
@@ -79,6 +81,10 @@ class EmployeeController extends Controller
         $employee = $empl[0];
         
         return view('employee.edit')->with(compact('employee','department'));
+        }
+        else{
+            return redirect('/')->with('error', 'Access Denied!');
+        }
     }
 
 
@@ -111,10 +117,7 @@ class EmployeeController extends Controller
         $employee->department_id = $request->input('department_id');
         $employee->phone = $request->input('phone');
         $employee->save();
-        /*if($employee->user_type == 'regular'){
-            return redirect('/home')->with('success', 'Profile Updated');
-        }
-        return redirect('/admin')->with('success', 'Profile Updated');*/
+        
         return back()->with('success', 'Profile Updated');
     }
 

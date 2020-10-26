@@ -61,18 +61,15 @@
 </div></div>
 <script>
     function goBack() {
-          if({{Auth::user()->user_type == 'admin'}}){
-            //window.location.href = "/admin";
+          
+            
             if({{$employee->id}} == {{Auth::user()->id}}){
               window.location.href = "/home";
             }
             else{
               window.location.href = "/admin";
             }
-          }
-          else{
-            window.location.href = "/home";
-          }
+          
           
         }
 

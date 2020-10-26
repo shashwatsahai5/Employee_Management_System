@@ -38,6 +38,8 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/admin', 'AdminController@index');
     Route::get('/admin/employee/{id}/edit','AdminController@edit');
+    Route::resource('department','DepartmentController');
+    Route::put('/department/{id}/edit','DepartmentController@update');
 });
 
 

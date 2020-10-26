@@ -19,10 +19,9 @@ class AdminController extends Controller
     {
         $users = DB::table('departments')
         ->join('users', 'departments.id', 'users.department_id')
-        //->get()
         ->paginate(10);
-        //$users = User::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.index')->with('users',$users);
+        $departments = Department::all();
+        return view('admin.index')->with(compact('users','departments'));
     }
 
     /**
@@ -94,6 +93,7 @@ class AdminController extends Controller
     {
         //
     }
+    
 
     /**
      * Remove the specified resource from storage.

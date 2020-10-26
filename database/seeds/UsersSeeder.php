@@ -54,7 +54,7 @@ class UsersSeeder extends Seeder
             'DOB' => now(),
             'company_name' => 'KiwiTech',
             'user_type' => 'regular',
-            'department_id' => 1,
+            'department_id' => 2,
             'phone' => '9876543210',
             'created_at' => now(),
             'updated_at' => now(),

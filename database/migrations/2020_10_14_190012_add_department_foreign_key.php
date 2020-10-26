@@ -14,7 +14,7 @@ class AddDepartmentForeignKey extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('department_id')->unsigned()->default(10);
+            $table->bigInteger('department_id')->unsigned()->default(1);
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade'); 
         });
     }

@@ -13,10 +13,15 @@ class AddressController extends Controller
 {
     public function show($id){
         //$user = User::find($id);
+        if(auth()->user()->user_type == 'admin' || auth()->user()->id == $id){
         $states = State::get(["id","name"]);
         $countries = Country::get(["name","id"]);
         $addresses = Address::where('user_id', $id)->get();
         return view('employee.address', compact('addresses','id','countries', 'states'));
+        }
+        else{
+            return redirect('/')->with('error', 'Access Denied!');
+        }
     }
 
     public function store(Request $request){
